@@ -1,6 +1,7 @@
 package saf.ui;
 
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
@@ -18,6 +19,7 @@ import static saf.settings.AppPropertyType.*;
 import static saf.settings.AppStartupConstants.FILE_PROTOCOL;
 import static saf.settings.AppStartupConstants.PATH_IMAGES;
 import saf.components.AppStyleArbiter;
+import static saf.components.AppStyleArbiter.CLASS_FILE_BUTTON;
 
 /**
  * This class provides the basic user interface for this application,
@@ -210,9 +212,10 @@ public class AppGUI implements AppStyleArbiter
         // HAS BEEN CONSTRUCTED, BUT WON'T BE ADDED UNTIL
         // THE USER STARTS EDITING A COURSE
         appPane = new BorderPane();
-        topPane = new FlowPane(fileToolbarPane);
-        topPane.setHgap(5);
-        topPane.setVgap(5);
+        topPane = new FlowPane();
+        topPane.getChildren().add(fileToolbarPane);
+        topPane.setHgap(100);
+        topPane.setVgap(10);
         
         appPane.setTop(topPane);
         primaryScene = new Scene(appPane);
@@ -273,12 +276,7 @@ public class AppGUI implements AppStyleArbiter
     {
 	topPane.getStyleClass().add(CLASS_BORDERED_PANE);
 	//fileToolbarPane.getStyleClass().add(CLASS_BORDERED_PANE);
-	newButton.getStyleClass().add(CLASS_FILE_BUTTON);
-	loadButton.getStyleClass().add(CLASS_FILE_BUTTON);
-	saveButton.getStyleClass().add(CLASS_FILE_BUTTON);
-        saveAsButton.getStyleClass().add(CLASS_FILE_BUTTON);
-        exportToPhotoButton.getStyleClass().add(CLASS_FILE_BUTTON);
-        exportToCodeButton.getStyleClass().add(CLASS_FILE_BUTTON);
-	exitButton.getStyleClass().add(CLASS_FILE_BUTTON);
+	for (Node b: fileToolbarPane.getChildren())
+            ((Button)b).getStyleClass().add(CLASS_FILE_BUTTON);
     }
 }
