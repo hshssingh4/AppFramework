@@ -44,6 +44,7 @@ public class AppGUI implements AppStyleArbiter
     protected BorderPane appPane;
     
     // THIS IS THE TOP TOOLBAR AND ITS CONTROLS
+    protected FlowPane topPane; // Contains extra flow panes if required
     protected FlowPane fileToolbarPane;
     protected Button newButton;
     protected Button loadButton;
@@ -144,6 +145,7 @@ public class AppGUI implements AppStyleArbiter
     {
         fileToolbarPane = new FlowPane();
         fileToolbarPane.setHgap(5);
+        fileToolbarPane.setVgap(5);
 
         // HERE ARE OUR FILE TOOLBAR BUTTONS, NOTE THAT SOME WILL
         // START AS ENABLED (false), WHILE OTHERS DISABLED (true)
@@ -208,7 +210,11 @@ public class AppGUI implements AppStyleArbiter
         // HAS BEEN CONSTRUCTED, BUT WON'T BE ADDED UNTIL
         // THE USER STARTS EDITING A COURSE
         appPane = new BorderPane();
-        appPane.setTop(fileToolbarPane);
+        topPane = new FlowPane(fileToolbarPane);
+        topPane.setHgap(5);
+        topPane.setVgap(5);
+        
+        appPane.setTop(topPane);
         primaryScene = new Scene(appPane);
         
         // SET THE APP ICON
@@ -265,11 +271,14 @@ public class AppGUI implements AppStyleArbiter
     @Override
     public void initStyle() 
     {
-	fileToolbarPane.getStyleClass().add(CLASS_BORDERED_PANE);
+	topPane.getStyleClass().add(CLASS_BORDERED_PANE);
+	//fileToolbarPane.getStyleClass().add(CLASS_BORDERED_PANE);
 	newButton.getStyleClass().add(CLASS_FILE_BUTTON);
 	loadButton.getStyleClass().add(CLASS_FILE_BUTTON);
 	saveButton.getStyleClass().add(CLASS_FILE_BUTTON);
         saveAsButton.getStyleClass().add(CLASS_FILE_BUTTON);
+        exportToPhotoButton.getStyleClass().add(CLASS_FILE_BUTTON);
+        exportToCodeButton.getStyleClass().add(CLASS_FILE_BUTTON);
 	exitButton.getStyleClass().add(CLASS_FILE_BUTTON);
     }
 }

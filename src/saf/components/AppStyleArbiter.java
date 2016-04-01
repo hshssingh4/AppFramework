@@ -8,7 +8,8 @@ package saf.components;
  * @author ?
  * @version 1.0
  */
-public interface AppStyleArbiter {
+public interface AppStyleArbiter 
+{
     // THESE ARE COMMON STYLE CLASSES WE'LL USE
     public static final String CLASS_BORDERED_PANE = "bordered_pane";
     public static final String CLASS_HEADING_LABEL = "heading_label";
