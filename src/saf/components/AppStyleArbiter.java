@@ -17,6 +17,7 @@ public interface AppStyleArbiter
     public static final String CLASS_PROMPT_LABEL = "prompt_label";
     public static final String CLASS_PROMPT_TEXT_FIELD = "prompt_text_field";
     public static final String CLASS_FILE_BUTTON = "file_button";
+    public static final String CLASS_MAX_PANE = "max_pane";
     
     public void initStyle();
 }
