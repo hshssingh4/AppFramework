@@ -332,7 +332,7 @@ public class AppFileController
         }
 
         // IF THE USER SAID NO, WE JUST GO ON WITHOUT SAVING
-        // BUT FOR BOTH YES AND NO WE DO WHATEVER THE USER
+        // BUT FOR BOTH YES AND CANCEL WE DO WHATEVER THE USER
         // HAD IN MIND IN THE FIRST PLACE
         return true;
     }
