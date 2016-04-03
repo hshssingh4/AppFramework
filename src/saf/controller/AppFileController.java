@@ -34,7 +34,7 @@ import static saf.settings.AppStartupConstants.PATH_WORK;
  * that are provided by this framework.
  * 
  * @author Richard McKenna
- * @author ?
+ * @author Harpreet Singh
  * @version 1.0
  */
 public class AppFileController 
@@ -80,8 +80,6 @@ public class AppFileController
     /**
      * This method starts the process of editing new Work. If work is
      * already being edited, it will prompt the user to save it first.
-     * 
-     * @param gui The user interface editing the Course.
      */
     public void handleNewRequest() 
     {
@@ -200,16 +198,25 @@ public class AppFileController
         }
     }
     
+    /**
+     * This methods handles the Save As request of the user.
+     */
     public void handleSaveAsRequest()
     {
         System.out.println("SAVE AS WORK NEEDS TO BE IMPLEMENTED");
     }
     
+    /**
+     * This method saves the current workspace as an image file.
+     */
     public void handleExportToPhotoRequest()
     {
         System.out.println("EXPORT TO PHOTO NEEDS TO BE IMPLEMENTED");
     }
     
+    /**
+     * This method helps export the design to .java files.
+     */
     public void handleExportToCodeRequest()
     {
         System.out.println("EXPORT TO CODE NEEDS TO BE IMPLEMENTED");
@@ -238,8 +245,6 @@ public class AppFileController
     /**
      * This method will exit the application, making sure the user doesn't lose
      * any data first.
-     * 
-     * @param gui
      */
     public void handleExitRequest() 
     {

@@ -10,7 +10,7 @@ import javafx.scene.layout.Pane;
  * called from this framework.
  * 
  * @author Richard McKenna
- * @author ?
+ * @author Harpreet Singh
  * @version 1.0
  */
 public abstract class AppWorkspaceComponent implements AppStyleArbiter 
