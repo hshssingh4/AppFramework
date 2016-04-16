@@ -7,10 +7,17 @@ import saf.components.AppFileComponent;
 import saf.components.AppDataComponent;
 import java.io.File;
 import java.io.IOException;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.WritableImage;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javax.imageio.ImageIO;
 import properties_manager.PropertiesManager;
 import saf.AppTemplate;
+import static saf.settings.AppPropertyType.EXPORT_TO_PHOTO_ERROR_MESSAGE;
+import static saf.settings.AppPropertyType.EXPORT_TO_PHOTO_ERROR_TITLE;
 import static saf.settings.AppPropertyType.LOAD_ERROR_MESSAGE;
 import static saf.settings.AppPropertyType.LOAD_ERROR_TITLE;
 import static saf.settings.AppPropertyType.LOAD_WORK_TITLE;
@@ -27,6 +34,7 @@ import static saf.settings.AppPropertyType.SAVE_ERROR_TITLE;
 import static saf.settings.AppPropertyType.SAVE_UNSAVED_WORK_MESSAGE;
 import static saf.settings.AppPropertyType.SAVE_UNSAVED_WORK_TITLE;
 import static saf.settings.AppPropertyType.SAVE_WORK_TITLE;
+import static saf.settings.AppStartupConstants.PATH_IMAGES;
 import static saf.settings.AppStartupConstants.PATH_WORK;
 
 /**
@@ -211,7 +219,31 @@ public class AppFileController
      */
     public void handleExportToPhotoRequest()
     {
-        System.out.println("EXPORT TO PHOTO NEEDS TO BE IMPLEMENTED");
+        // WE'LL NEED THIS TO GET CUSTOM STUFF
+	PropertiesManager props = PropertiesManager.getPropertiesManager();
+        BorderPane borderPane = (BorderPane) app.getWorkspaceComponent().getWorkspace();
+        ScrollPane centerPane = (ScrollPane) borderPane.getCenter();
+        
+        try
+        {
+            WritableImage image = centerPane.snapshot(null, null);
+            // PROMPT THE USER FOR A FILE NAME
+            FileChooser fc = new FileChooser();
+            fc.setTitle("Save Image");
+            fc.getExtensionFilters().addAll(new ExtensionFilter("Image Files", "*.png"));
+            fc.setInitialDirectory(new File(PATH_IMAGES));
+            File selectedFile = fc.showSaveDialog(app.getGUI().getWindow());
+            if (selectedFile != null) 
+            {
+        	ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png",selectedFile);
+            }
+        }
+        catch (IOException e)
+        {
+            AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(EXPORT_TO_PHOTO_ERROR_TITLE), 
+                    props.getProperty(EXPORT_TO_PHOTO_ERROR_MESSAGE));
+        }
     }
     
     /**
