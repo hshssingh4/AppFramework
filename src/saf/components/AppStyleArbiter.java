@@ -21,6 +21,7 @@ public interface AppStyleArbiter
     public static final String CLASS_COMPONENT_TOOLBAR = "component_toolbar";
     public static final String CLASS_COMPONENT_CHILD_ELEMENT = "component_child_element";
     public static final String CLASS_COMPONENT_BUTTON = "component_button";
+    public static final String CLASS_TEXT_LABEL = "text_label";
     
     public void initStyle();
 }
