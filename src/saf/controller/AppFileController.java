@@ -11,11 +11,14 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javax.imageio.ImageIO;
 import properties_manager.PropertiesManager;
 import saf.AppTemplate;
+import static saf.settings.AppPropertyType.EXPORT_TO_CODE_ERROR_MESSAGE;
+import static saf.settings.AppPropertyType.EXPORT_TO_CODE_ERROR_TITLE;
 import static saf.settings.AppPropertyType.EXPORT_TO_PHOTO_ERROR_MESSAGE;
 import static saf.settings.AppPropertyType.EXPORT_TO_PHOTO_ERROR_TITLE;
 import static saf.settings.AppPropertyType.LOAD_ERROR_MESSAGE;
@@ -35,6 +38,7 @@ import static saf.settings.AppPropertyType.SAVE_UNSAVED_WORK_MESSAGE;
 import static saf.settings.AppPropertyType.SAVE_UNSAVED_WORK_TITLE;
 import static saf.settings.AppPropertyType.SAVE_WORK_TITLE;
 import static saf.settings.AppStartupConstants.PATH_IMAGES;
+import static saf.settings.AppStartupConstants.PATH_JAVA_FILES;
 import static saf.settings.AppStartupConstants.PATH_WORK;
 
 /**
@@ -252,6 +256,26 @@ public class AppFileController
     public void handleExportToCodeRequest()
     {
         System.out.println("EXPORT TO CODE NEEDS TO BE IMPLEMENTED");
+        
+        DirectoryChooser dc = new DirectoryChooser();
+        dc.setTitle("Choose Folder For .java Files");
+	dc.setInitialDirectory(new File(PATH_JAVA_FILES));
+        File selectedDirectory = dc.showDialog(app.getGUI().getWindow());
+        if (selectedDirectory != null) 
+        {
+            try 
+            {
+                app.getFileComponent().exportData(app.getDataComponent(), 
+                        selectedDirectory.getPath());
+            } 
+            catch (IOException ex) 
+            {
+                AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+		PropertiesManager props = PropertiesManager.getPropertiesManager();
+                dialog.show(props.getProperty(EXPORT_TO_CODE_ERROR_TITLE),
+                        props.getProperty(EXPORT_TO_CODE_ERROR_MESSAGE));
+            }
+	}
     }
     
     // HELPER METHOD FOR SAVING WORK

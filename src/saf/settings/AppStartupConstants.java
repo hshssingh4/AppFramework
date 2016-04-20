@@ -19,6 +19,7 @@ public class AppStartupConstants
     public static final String PATH_WORK = "./work/";
     public static final String PATH_IMAGES = "./images/";
     public static final String PATH_EMPTY = ".";
+    public static final String PATH_JAVA_FILES = "./java files/";
   
     // ERRO MESSAGE ASSOCIATED WITH PROPERTIES FILE LOADING ERRORS
     public static String PROPERTIES_FILE_ERROR_MESSAGE = "Error Loading properties.xml";
