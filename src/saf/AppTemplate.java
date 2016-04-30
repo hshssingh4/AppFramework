@@ -103,6 +103,10 @@ public abstract class AppTemplate extends Application
 		initStylesheet();
 		gui.initStyle();
 		workspaceComponent.initStyle();
+                
+                // TWO LINES BELOW ARE LATER ADDITIONS (Galat ho sakti hain)
+                messageDialog.initStylesheet(this);
+                yesNoDialog.initStylesheet(this);
 	    } 
 	}
         catch (Exception e/*IOException ioe*/)

@@ -1,5 +1,6 @@
 package saf.ui;
 
+import java.net.URL;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -8,6 +9,13 @@ import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.stage.Modality;
+import properties_manager.PropertiesManager;
+import saf.AppTemplate;
+import static saf.components.AppStyleArbiter.CLASS_COMPONENT_BUTTON;
+import static saf.components.AppStyleArbiter.CLASS_COMPONENT_CHILD_ELEMENT;
+import static saf.components.AppStyleArbiter.CLASS_SUBHEADING_LABEL;
+import static saf.settings.AppPropertyType.APP_CSS;
+import static saf.settings.AppPropertyType.APP_PATH_CSS;
 import static saf.settings.AppStartupConstants.CLOSE_BUTTON_LABEL;
 
 /**
@@ -81,6 +89,26 @@ public class AppMessageDialogSingleton extends Stage {
         // AND PUT IT IN THE WINDOW
         messageScene = new Scene(messagePane);
         this.setScene(messageScene);
+    }
+    
+    /**
+     * This function sets up the stylesheet to be used for specifying all
+     * style for this application. Note that it does not attach CSS style
+     * classes to controls, that must be done separately.
+     * @param app
+     * app with the stylesheets
+     */
+    public void initStylesheet(AppTemplate app)
+    {
+	messageScene.getStylesheets().addAll(
+                app.getGUI().getPrimaryScene().getStylesheets());
+        initStyle();
+    }
+    
+    private void initStyle()
+    {
+        closeButton.getStyleClass().add(CLASS_COMPONENT_BUTTON);
+        messagePane.getStyleClass().add(CLASS_COMPONENT_CHILD_ELEMENT);
     }
  
     /**

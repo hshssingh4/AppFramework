@@ -11,6 +11,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
+import saf.AppTemplate;
+import static saf.components.AppStyleArbiter.CLASS_COMPONENT_BUTTON;
+import static saf.components.AppStyleArbiter.CLASS_COMPONENT_CHILD_ELEMENT;
+import static saf.components.AppStyleArbiter.CLASS_SUBHEADING_LABEL;
 import static saf.ui.AppMessageDialogSingleton.singleton;
 
 /**
@@ -92,7 +96,8 @@ public class AppYesNoCancelDialogSingleton extends Stage {
         cancelButton.setOnAction(yesNoCancelHandler);
 
         // NOW ORGANIZE OUR BUTTONS
-        HBox buttonBox = new HBox();
+        HBox buttonBox = new HBox(10);
+        buttonBox.setAlignment(Pos.CENTER);
         buttonBox.getChildren().add(yesButton);
         buttonBox.getChildren().add(noButton);
         buttonBox.getChildren().add(cancelButton);
@@ -122,6 +127,28 @@ public class AppYesNoCancelDialogSingleton extends Stage {
         return selection;
     }
  
+    /**
+     * This function sets up the stylesheet to be used for specifying all
+     * style for this application. Note that it does not attach CSS style
+     * classes to controls, that must be done separately.
+     * @param app
+     * app with the stylesheets
+     */
+    public void initStylesheet(AppTemplate app)
+    {
+	messageScene.getStylesheets().addAll(
+                app.getGUI().getPrimaryScene().getStylesheets());
+        initStyle();
+    }
+    
+    private void initStyle()
+    {
+        yesButton.getStyleClass().add(CLASS_COMPONENT_BUTTON);
+        noButton.getStyleClass().add(CLASS_COMPONENT_BUTTON);
+        cancelButton.getStyleClass().add(CLASS_COMPONENT_BUTTON);
+        messagePane.getStyleClass().add(CLASS_COMPONENT_CHILD_ELEMENT);
+    }
+    
     /**
      * This method loads a custom message into the label
      * then pops open the dialog.

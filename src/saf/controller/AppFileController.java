@@ -215,7 +215,28 @@ public class AppFileController
      */
     public void handleSaveAsRequest()
     {
-        System.out.println("SAVE AS WORK NEEDS TO BE IMPLEMENTED");
+        // WE'LL NEED THIS TO GET CUSTOM STUFF
+	PropertiesManager props = PropertiesManager.getPropertiesManager();
+        try 
+        {
+            // PROMPT THE USER FOR A FILE NAME
+            FileChooser fc = new FileChooser();
+            fc.setInitialDirectory(new File(PATH_WORK));
+            fc.setTitle(props.getProperty(SAVE_WORK_TITLE));
+            fc.getExtensionFilters().addAll(
+            new ExtensionFilter(props.getProperty(WORK_FILE_EXT_DESC), props.getProperty(WORK_FILE_EXT)));
+
+            File selectedFile = fc.showSaveDialog(app.getGUI().getWindow());
+            if (selectedFile != null) 
+            {
+                saveWork(selectedFile);
+            }
+        } 
+        catch (IOException ioe) 
+        {
+	    AppMessageDialogSingleton dialog = AppMessageDialogSingleton.getSingleton();
+	    dialog.show(props.getProperty(LOAD_ERROR_TITLE), props.getProperty(LOAD_ERROR_MESSAGE));
+        }
     }
     
     /**
@@ -359,7 +380,7 @@ public class AppFileController
         String selection = yesNoDialog.getSelection();
 
         // IF THE USER SAID YES, THEN SAVE BEFORE MOVING ON
-        if (selection.equals(AppYesNoCancelDialogSingleton.YES)) 
+        if (selection != null && selection.equals(AppYesNoCancelDialogSingleton.YES)) 
         {
             // SAVE THE DATA FILE
             AppDataComponent dataManager = app.getDataComponent();
@@ -387,10 +408,12 @@ public class AppFileController
 	    }
         } // IF THE USER SAID CANCEL, THEN WE'LL TELL WHOEVER
         // CALLED THIS THAT THE USER IS NOT INTERESTED ANYMORE
-        else if (selection.equals(AppYesNoCancelDialogSingleton.CANCEL)) 
+        else if (selection != null && selection.equals(AppYesNoCancelDialogSingleton.CANCEL)) 
         {
             return false;
         }
+        else
+            return false; // User closed the dialog
 
         // IF THE USER SAID NO, WE JUST GO ON WITHOUT SAVING
         // BUT FOR BOTH YES AND CANCEL WE DO WHATEVER THE USER
