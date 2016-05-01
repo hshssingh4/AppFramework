@@ -27,7 +27,7 @@ import static saf.components.AppStyleArbiter.CLASS_FILE_BUTTON;
  * which would be customly provided for each app.
  * 
  * @author Richard McKenna
- * @author ?
+ * @author Harpreet Singh
  * @version 1.0
  */
 public class AppGUI implements AppStyleArbiter 

@@ -7,7 +7,7 @@ package saf.components;
  * method called from this framework.
  * 
  * @author Richard McKenna
- * @author ?
+ * @author Harpreet Singh
  * @version 1.0
  */
 public interface AppDataComponent 

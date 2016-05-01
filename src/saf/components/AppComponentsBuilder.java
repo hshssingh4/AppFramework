@@ -6,7 +6,7 @@ package saf.components;
  * This is one means of employing a component hierarchy.
  * 
  * @author Richard McKenna
- * @author ?
+ * @author Harpreet Singh
  * @version 1.0
  */
 public interface AppComponentsBuilder 

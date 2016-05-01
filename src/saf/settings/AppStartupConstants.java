@@ -4,7 +4,7 @@ package saf.settings;
  * This class provides a set of constants useful for setting up the app.
  * 
  * @author Richard McKenna
- * @author ?
+ * @author Harpreet Singh
  * @version 1.0
  */
 public class AppStartupConstants

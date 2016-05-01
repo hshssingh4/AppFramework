@@ -17,26 +17,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javax.imageio.ImageIO;
 import properties_manager.PropertiesManager;
 import saf.AppTemplate;
-import static saf.settings.AppPropertyType.EXPORT_TO_CODE_ERROR_MESSAGE;
-import static saf.settings.AppPropertyType.EXPORT_TO_CODE_ERROR_TITLE;
-import static saf.settings.AppPropertyType.EXPORT_TO_PHOTO_ERROR_MESSAGE;
-import static saf.settings.AppPropertyType.EXPORT_TO_PHOTO_ERROR_TITLE;
-import static saf.settings.AppPropertyType.LOAD_ERROR_MESSAGE;
-import static saf.settings.AppPropertyType.LOAD_ERROR_TITLE;
-import static saf.settings.AppPropertyType.LOAD_WORK_TITLE;
-import static saf.settings.AppPropertyType.WORK_FILE_EXT;
-import static saf.settings.AppPropertyType.WORK_FILE_EXT_DESC;
-import static saf.settings.AppPropertyType.NEW_COMPLETED_MESSAGE;
-import static saf.settings.AppPropertyType.NEW_COMPLETED_TITLE;
-import static saf.settings.AppPropertyType.NEW_ERROR_MESSAGE;
-import static saf.settings.AppPropertyType.NEW_ERROR_TITLE;
-import static saf.settings.AppPropertyType.SAVE_COMPLETED_MESSAGE;
-import static saf.settings.AppPropertyType.SAVE_COMPLETED_TITLE;
-import static saf.settings.AppPropertyType.SAVE_ERROR_MESSAGE;
-import static saf.settings.AppPropertyType.SAVE_ERROR_TITLE;
-import static saf.settings.AppPropertyType.SAVE_UNSAVED_WORK_MESSAGE;
-import static saf.settings.AppPropertyType.SAVE_UNSAVED_WORK_TITLE;
-import static saf.settings.AppPropertyType.SAVE_WORK_TITLE;
+import static saf.settings.AppPropertyType.*;
 import static saf.settings.AppStartupConstants.PATH_IMAGES;
 import static saf.settings.AppStartupConstants.PATH_JAVA_FILES;
 import static saf.settings.AppStartupConstants.PATH_WORK;
@@ -378,9 +359,12 @@ public class AppFileController
         
         // AND NOW GET THE USER'S SELECTION
         String selection = yesNoDialog.getSelection();
+        
+        if (selection == null)
+            return false; // User closed the stage (dialog box).
 
         // IF THE USER SAID YES, THEN SAVE BEFORE MOVING ON
-        if (selection != null && selection.equals(AppYesNoCancelDialogSingleton.YES)) 
+        if (selection.equals(AppYesNoCancelDialogSingleton.YES)) 
         {
             // SAVE THE DATA FILE
             AppDataComponent dataManager = app.getDataComponent();
@@ -408,12 +392,8 @@ public class AppFileController
 	    }
         } // IF THE USER SAID CANCEL, THEN WE'LL TELL WHOEVER
         // CALLED THIS THAT THE USER IS NOT INTERESTED ANYMORE
-        else if (selection != null && selection.equals(AppYesNoCancelDialogSingleton.CANCEL)) 
-        {
+        else if (selection.equals(AppYesNoCancelDialogSingleton.CANCEL)) 
             return false;
-        }
-        else
-            return false; // User closed the dialog
 
         // IF THE USER SAID NO, WE JUST GO ON WITHOUT SAVING
         // BUT FOR BOTH YES AND CANCEL WE DO WHATEVER THE USER

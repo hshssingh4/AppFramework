@@ -5,7 +5,7 @@ package saf.settings;
  * XML files to be used for setting up the application.
  * 
  * @author Richard McKenna
- * @author ?
+ * @author Harpreet Singh
  * @version 1.0
  */
 public enum AppPropertyType 
@@ -67,6 +67,8 @@ public enum AppPropertyType
         EXPORT_TO_CODE_COMPLETED_TITLE,
 	SAVE_UNSAVED_WORK_TITLE,
         SAVE_UNSAVED_WORK_MESSAGE,
+        REMOVE_ELEMENT_MESSAGE,
+        REMOVE_ELEMENT_TITLE,
 	
 	SAVE_WORK_TITLE,
 	LOAD_WORK_TITLE,

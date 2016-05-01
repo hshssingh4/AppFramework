@@ -1,6 +1,5 @@
 package saf.ui;
 
-import java.net.URL;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,13 +8,9 @@ import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.stage.Modality;
-import properties_manager.PropertiesManager;
 import saf.AppTemplate;
 import static saf.components.AppStyleArbiter.CLASS_COMPONENT_BUTTON;
 import static saf.components.AppStyleArbiter.CLASS_COMPONENT_CHILD_ELEMENT;
-import static saf.components.AppStyleArbiter.CLASS_SUBHEADING_LABEL;
-import static saf.settings.AppPropertyType.APP_CSS;
-import static saf.settings.AppPropertyType.APP_PATH_CSS;
 import static saf.settings.AppStartupConstants.CLOSE_BUTTON_LABEL;
 
 /**
@@ -24,7 +19,7 @@ import static saf.settings.AppStartupConstants.CLOSE_BUTTON_LABEL;
  * with a message, and a single ok button. 
  * 
  * @author Richard McKenna
- * @author ?
+ * @author Harpreet Singh
  * @version 1.0
  */
 public class AppMessageDialogSingleton extends Stage {
@@ -105,6 +100,10 @@ public class AppMessageDialogSingleton extends Stage {
         initStyle();
     }
     
+    /**
+     * Helper method to initialize the style for the buttons and the panes in
+     * this singleton.
+     */
     private void initStyle()
     {
         closeButton.getStyleClass().add(CLASS_COMPONENT_BUTTON);

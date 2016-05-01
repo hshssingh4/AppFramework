@@ -5,13 +5,14 @@ package saf.components;
  * the style for some set of controls, like the workspace, for example.
  * 
  * @author Richard McKenna
- * @author ?
+ * @author Harpreet Singh
  * @version 1.0
  */
 public interface AppStyleArbiter 
 {
     // THESE ARE COMMON STYLE CLASSES WE'LL USE
     public static final String CLASS_BORDERED_PANE = "bordered_pane";
+    public static final String CLASS_CANVAS = "canvas_class";
     public static final String CLASS_HEADING_LABEL = "heading_label";
     public static final String CLASS_SUBHEADING_LABEL = "subheading_label";
     public static final String CLASS_PROMPT_LABEL = "prompt_label";

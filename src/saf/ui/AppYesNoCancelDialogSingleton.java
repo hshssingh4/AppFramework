@@ -14,8 +14,6 @@ import javafx.stage.Modality;
 import saf.AppTemplate;
 import static saf.components.AppStyleArbiter.CLASS_COMPONENT_BUTTON;
 import static saf.components.AppStyleArbiter.CLASS_COMPONENT_CHILD_ELEMENT;
-import static saf.components.AppStyleArbiter.CLASS_SUBHEADING_LABEL;
-import static saf.ui.AppMessageDialogSingleton.singleton;
 
 /**
  * This class serves to present a dialog with three options to
@@ -23,7 +21,7 @@ import static saf.ui.AppMessageDialogSingleton.singleton;
  * selected.
  * 
  * @author Richard McKenna
- * @author ?
+ * @author Harpreet Singh
  * @version 1.0
  */
 public class AppYesNoCancelDialogSingleton extends Stage {
@@ -141,6 +139,9 @@ public class AppYesNoCancelDialogSingleton extends Stage {
         initStyle();
     }
     
+    /**
+     * Helper method to initialize the styles for buttons and panes in this singleton.
+     */
     private void initStyle()
     {
         yesButton.getStyleClass().add(CLASS_COMPONENT_BUTTON);
